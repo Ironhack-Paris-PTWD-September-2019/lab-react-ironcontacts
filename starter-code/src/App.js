@@ -1,18 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import contacts from "./contacts.json";
+import logo from "./logo.svg";
+import "./App.css";
+
+const table = contacts.splice(0, 5);
+// const list= table.map((contact, index) => {
+//   (<tr key={index}>
+//     <td>
+//       <img src={contact.pictureUrl} />
+//     </td>
+//     <td>{contact.name}</td>
+//     <td>{contact.popularity}</td>
+//   </tr>;)
+// })
+//console.log(table);
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <h1>IronContacts</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Popularity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {table.map((contact, index) => {
+              return (
+                <tr key={index}>
+                  <td>
+                    <img class="picture-contact" src={contact.pictureUrl} />
+                  </td>
+                  <td>{contact.name}</td>
+                  <td>{contact.popularity}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     );
   }
