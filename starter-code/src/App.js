@@ -12,20 +12,20 @@ class App extends Component {
     innerContacts: table
   };
 
-  findContact = () => {
-    return contacts[Math.floor(Math.random() * 189) + 5];
+  findNewContact = () => {
+    let newContact = contacts[Math.floor(Math.random() * 194)];
+    if (this.state.innerContacts.indexOf(newContact) > -1) {
+      newContact = this.findNewContact();
+    } else {
+      return newContact;
+    }
   };
 
   addRandomContact = () => {
-    let newContact = this.findContact;
-
-    //TODO intégrer la vérification que le nouveau contact n'est pas déjà dans le tableau
+    let newContact = this.findNewContact();
 
     this.setState({
-      innerContacts: [
-        ...this.state.innerContacts,
-        contacts[Math.floor(Math.random() * 189) + 5]
-      ]
+      innerContacts: [...this.state.innerContacts, newContact]
     });
   };
 
@@ -61,13 +61,17 @@ class App extends Component {
       innerContacts: copyContacts
     });
   };
+
   render() {
     return (
       <div className="App">
         <h1>IronContacts</h1>
-        <button onClick={this.addRandomContact}> Add Random Contact</button>
-        <button onClick={this.sortByName}>Sort by name</button>
-        <button onClick={this.sortByPopularity}>Sort by popularity</button>
+        <div className="buttons">
+          <button onClick={this.addRandomContact}> Add Random Contact</button>
+          <button onClick={this.sortByName}>Sort by name</button>
+          <button onClick={this.sortByPopularity}>Sort by popularity</button>
+        </div>
+
         <table>
           <thead>
             <tr>

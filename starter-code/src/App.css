@@ -38,3 +38,20 @@
     transform: rotate(360deg);
   }
 }
+
+.buttons {
+  margin-bottom: 1em;
+}
+
+button {
+  padding: 8px;
+  margin: 8px;
+  color: #fff !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ed3330;
+  border-radius: 5px;
+  display: inline-block;
+  border: none;
+  transition: all 0.4s ease 0s;
+}
