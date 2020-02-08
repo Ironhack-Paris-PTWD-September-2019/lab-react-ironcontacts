@@ -9,6 +9,9 @@ class ContactCard extends React.Component {
         </td>
         <td>{this.props.name}</td>
         <td>{this.props.popularity}</td>
+        <td>
+          <button onClick={this.props.deleteContact}>Delete</button>
+        </td>
       </tr>
     );
   }

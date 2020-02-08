@@ -51,6 +51,16 @@ class App extends Component {
     });
   };
 
+  deleteContact = name => {
+    let indexOfContactToDel = [...this.state.innerContacts].findIndex(el => {
+      return el.name === name;
+    });
+    let copyContacts = [...this.state.innerContacts];
+    copyContacts.splice(indexOfContactToDel, 1);
+    this.setState({
+      innerContacts: copyContacts
+    });
+  };
   render() {
     return (
       <div className="App">
@@ -64,6 +74,7 @@ class App extends Component {
               <th>Picture</th>
               <th>Name</th>
               <th>Popularity</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -74,6 +85,7 @@ class App extends Component {
                   name={contact.name}
                   popularity={contact.popularity}
                   pictureUrl={contact.pictureUrl}
+                  deleteContact={() => this.deleteContact(contact.name)}
                 />
               );
             })}
