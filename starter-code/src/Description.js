@@ -1,11 +1,17 @@
 import React from 'react';
 
+
 const Description = (props) => {
+
   return (
     <div className="contacts-list-item">
-        <img src= {props.pictureUrl} alt="">Picture</img>
-        <h2>Name {props.name}</h2>
-        <h2>Popularity {props.popularity}</h2>
+        <tbody>
+            <tr>
+                <td><img src= {props.pictureUrl} alt=""/></td>
+                <td>{props.name}</td>
+                <td>{props.popularity}</td>
+            </tr>
+        </tbody>  
     </div>
   )
 };
