@@ -14,3 +14,45 @@ body {
   display: block;
   width: 10em;
 }
+
+.tittles {
+  display: flex;
+  margin: 2em 2em;
+}
+
+.tittles h1 {
+  flex: 1;
+  margin-left: 0em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-right: 2em;
+  text-align: left;
+}
+
+.actorInfo {
+  display: flex;
+  margin: 2em 2em;
+}
+
+.actorInfodiv {
+  flex: 1;
+}
+
+.actorInfo img {
+  display: block;
+  /* margin-left: 6.5em; */
+  margin-right: auto;
+  width: 5em;
+}
+
+.actorInfo h1 {
+  text-align: left;
+  font-size: 2em;
+  font-weight: lighter;
+}
+
+.actorInfo button {
+  display: block;
+}
+
+

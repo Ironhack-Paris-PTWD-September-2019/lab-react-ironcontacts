@@ -38,10 +38,10 @@ class App extends Component {
     });
   }
 
-  deleteActor = (index) => {
+  deleteActor = (item) => {
     const copyContactsArray = [...this.state.contactsArray];
-    const actorId = copyContactsArray.findIndex(item => item.index === index);
-    copyContactsArray.splice(actorId, 1);
+    const actorToDelete = copyContactsArray.findIndex(itemCopy => itemCopy.name === item.name);
+    copyContactsArray.splice(actorToDelete, 1);
     this.setState({
       contactsArray : copyContactsArray
       });
@@ -55,16 +55,23 @@ class App extends Component {
     console.log (contacts);
     return (
       <div className="App">
-        <button onClick={(event) => this.addRandomActor()}>Add Random Contact</button>
-        <button onClick={(event) => this.sortByName()}>Sort by Name</button>
-        <button onClick={(event) => this.sortByPopularity()}>Sort by Popularity</button>
-        {this.state.contactsArray.map( (item, index) => {
+      <h1>IronContacts</h1>
+      <button onClick={(event) => this.addRandomActor()}>Add Random Contact</button>
+      <button onClick={(event) => this.sortByName()}>Sort by Name</button>
+      <button onClick={(event) => this.sortByPopularity()}>Sort by Popularity</button>
+      <div className="tittles">
+        <h1>Picture</h1>
+        <h1>Name</h1>
+        <h1>Popularity</h1>
+        <h1>Action</h1>
+      </div>
+        {this.state.contactsArray.map((item, index) => {
           return (
             <div className="actorInfo" key={index}>
-              <img src={item.pictureUrl} alt="" />
-              <h1>{item.name}</h1>
-              <h1>{item.popularity}</h1>
-              <button onClick={(event) => this.deleteActor()}>Delete</button>
+              <div className="actorInfodiv"><img src={item.pictureUrl} alt="" /></div>
+              <div className="actorInfodiv"><h1>{item.name}</h1></div>
+              <div className="actorInfodiv numberRound"><h1>{Math.round(item.popularity*100)/100}</h1></div>
+              <div className="actorInfodiv"><button onClick={(event) => this.deleteActor(item)}>Delete</button></div>
             </div>
           )
         })}
