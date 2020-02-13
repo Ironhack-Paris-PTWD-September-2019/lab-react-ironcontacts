@@ -26,3 +26,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.actors-contacts {
+  display:flex;
+  width:700px;
+  margin:auto;
+}
+
+.actors-contacts-col {
+  width:33%
+}
+
+.actors-contacts-col img {
+  width:40px
+}
