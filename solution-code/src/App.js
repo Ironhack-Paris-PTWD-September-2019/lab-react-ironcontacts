@@ -6,7 +6,8 @@ import json from './contacts.json';
 
 class App extends Component {
   state = {
-    contacts: json.slice(0, 5)
+    contacts: json.slice(0, 5),
+    sortby: null
   }
 
   addHandler = () => {
@@ -17,24 +18,8 @@ class App extends Component {
     })
   }
 
-  sortByNameHandler = () => {
-    this.setState({
-      contacts: [...this.state.contacts].sort(function (a, b) {
-        return a.name.localeCompare(b.name);
-      })
-    })
-  }
-
-  sortByPopularityHandler = () => {
-    this.setState({
-      contacts: [...this.state.contacts].sort(function (a, b) {
-        return a.popularity - b.popularity;
-      })
-    })
-  }
-
   deleteHandler = (name) => {
-    const contactsCopy = [...this.state.contacts];
+    const contactsCopy = [...this.state.contacts]; // copy
 
     const contactIndexToRemove = contactsCopy.findIndex(el => el.name === name);
     contactsCopy.splice(contactIndexToRemove, 1);
@@ -45,14 +30,26 @@ class App extends Component {
   }
 
   render() {
+    let contacts = [...this.state.contacts]; // make a copy (prevent mutating if .sort)
+
+    // sort by name
+    if (this.state.sortby === 'name') {
+      contacts.sort((a, b) => a.name.localeCompare(b.name))
+    }
+
+    // sort by popularity
+    if (this.state.sortby === 'popularity') {
+      contacts.sort((a, b) => a.popularity - b.popularity)
+    }
+
     return (
       <div className="App">
         <h1>IronContacts</h1>
 
         <p>
-          <button onClick={this.addHandler}>Add new contact</button>
-          <button onClick={this.sortByNameHandler}>Sort by name</button>
-          <button onClick={this.sortByPopularityHandler}>Sort by popularity</button>
+          <button onClick={e => this.addHandler()}>Add new contact</button>
+          <button onClick={e => this.setState({sortby: 'name'})}>Sort by name</button>
+          <button onClick={e => this.setState({sortby: 'popularity'})}>Sort by popularity</button>
         </p>
 
         <table>
@@ -65,7 +62,7 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.contacts.map((contact, index) => {
+            {contacts.map((contact, index) => {
               return (
                 <tr key={index}>
                   <td>
